@@ -8,24 +8,7 @@ import numpy as np
 import pickle
 import streamlit as st
 
-
-
-model_path = r'C:/Users/turningpointKS/Documents/Machine learning/Epilepsy Model.sav'
-try:
-    with open(model_path, 'rb') as file:  # Correctly indented
-        loaded_model = pickle.load(file)
-    st.write("Model loaded successfully")
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-    loaded_model = None
-
-
-except Exception as e:
-    st.error(f"Error loading model: {e}")
-    loaded_model = None
-
-# Function for prediction
-def epilepsy_prediction(input_data):
+def epilepsy_prediction(input_data, loaded_model):
     # Convert input_data to numpy array
     input_data_as_numpy_array = np.asarray(input_data)
 
@@ -43,10 +26,19 @@ def epilepsy_prediction(input_data):
     except Exception as e:
         return f"Error during prediction: {e}"
 
-# Main function
 def main():
     # Title of the web app
     st.title('Epilepsy Prediction Web App')
+
+    # Load the model
+    model_path = r'C:/Users/turningpointKS/Documents/Machine learning/Epilepsy Model.sav'
+    try:
+        with open(model_path, 'rb') as file:  
+            loaded_model = pickle.load(file)
+        st.write("Model loaded successfully")
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        loaded_model = None
 
     # Getting the input data from the user
     try:
@@ -88,12 +80,13 @@ def main():
         # Check if all fields have valid inputs
         if None in input_data:
             st.error("Please enter all values.")
+        elif loaded_model is None:
+            st.error("Model not loaded. Cannot make predictions.")
         else:
             # Predict and display result
-            diagnosis = epilepsy_prediction(input_data)
+            diagnosis = epilepsy_prediction(input_data, loaded_model)
             st.success(diagnosis)
 
-# Run the main function
 if __name__ == '__main__':
     main()
          
