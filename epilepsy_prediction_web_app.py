@@ -7,18 +7,13 @@ Created on Wed Aug  7 14:16:51 2024
 import numpy as np
 import pickle
 import streamlit as st
-import sklearn
 
-# Check scikit-learn version
-print("scikit-learn version:", sklearn.__version__)
-import pickle
-import streamlit as st
 
-# Load the model
+
 model_path = r'C:/Users/turningpointKS/Documents/Machine learning/Epilepsy Model.sav'
 try:
-    with open('Epilepsy Model.sav', 'rb') as file:  # Correctly indented
-        loaded_model = pickle.load(Epilepsy Model.sav)
+    with open(model_path, 'rb') as file:  # Correctly indented
+        loaded_model = pickle.load(file)
     st.write("Model loaded successfully")
 except Exception as e:
     st.error(f"Error loading model: {e}")
