@@ -31,8 +31,8 @@ def main():
     st.title('Epilepsy Prediction Web App')
 
     # Load the model
-    model_path =   r"C:\Users\turningpointKS\Documents\Machine learning\Epilepsy Model.sav"
-  
+    model_path =  r"C:\Users\turningpointKS\Documents\ml\Epilepsy Model2.sav"
+    
     try:
         with open(model_path, 'rb') as file:  
             loaded_model = pickle.load(file)
