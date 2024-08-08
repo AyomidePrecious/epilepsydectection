@@ -13,12 +13,14 @@ import sklearn
 print("scikit-learn version:", sklearn.__version__)
 
 # Load the model
-model_path = r'C:/Users/turningpointKS/Documents/Machine learning/Epilepsy Model.sav'
+model_path = "C:\Users\turningpointKS\Documents\Machine learning\Epilepsy Model.sav"
 try:
-    with open(model_path, 'rb') as file:
-        loaded_model = pickle.load(file)
+    with open('Epilepsy Model.sav', 'rb') as file:
+        loaded_model = pickle.load(Epilepsy Model.sav)
+    st.write("Model loaded successfully")
 except Exception as e:
     st.error(f"Error loading model: {e}")
+    loaded_model = None
 
 # Function for prediction
 def epilepsy_prediction(input_data):
@@ -92,8 +94,7 @@ def main():
 # Run the main function
 if __name__ == '__main__':
     main()
-
-          
+         
           
           
           
